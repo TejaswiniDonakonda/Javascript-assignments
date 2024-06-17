@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .card{
+                box-shadow: 0px 4px 8px red;
+                width: 40%;
+                height: 40%;
+                margin: 10% 30% 10%;
+                padding: 10px;
+            }
+            p{
+                color: red;
+                font-size: 20px;
+                text-align: center;
+                display: inline-block;
+                padding: 5px;
+                margin: 7%;
+            }
+            button{
+                background-color: green;
+                color: white;
+                border-radius: 5px;
+            }
+            
+        </style>
+        <script>
+            let cities=['Banglore','Mumbai','Pune','Kolkata','Chennai'];
+
+            const allcities=()=>{
+                let data="";
+                cities.map((cityname,index)=>{
+                    data=data+"<p>"+cityname.length+"<br>"+cityname+"<br>"+index+"<br><button onclick=del("+index+")>Delete</button></p>";
+                })
+                document.getElementById("container").innerHTML=data;
+            }
+
+            const save=()=>{
+                let newcity=document.getElementById("newcity").value;
+                cities.push(newcity);
+                allcities();
+            }
+
+            const del=(index)=>{
+                cities.splice(index,1);
+                allcities();
+            }
+
+
+        </script>
+    </head>
+    <body onload="allcities()" align="center">
+        <div class="card">
+            <input type="text" id="newcity"/>
+            <button onclick="save()">Save</button>
+            <section id="container"></section>    
+        </div>
+    </body>
+</html>

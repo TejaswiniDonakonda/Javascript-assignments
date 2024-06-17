@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+
+            class MyCollege{
+                constructor(){
+                    this.student=['Sarayu','Sara','Seeta','Sriya','Saru','Sumitra','Vrushaali'];
+                    this.course=['Full Stack','Java','Python','JavaScript','React','Node js'];
+                    this.staff=['Mohabjaan','Misshaa','Yasmin','Yashna','Nyshadaa'];
+                }
+
+                Student=()=>{
+                    let data="<h1> Students List </h1>";
+                    this.student.map((name,index)=>{
+                        data+="<p>"+name+"</p>";
+                    })
+                    document.getElementById("container").innerHTML=data;
+
+                }
+
+                Course=()=>{
+                    let data="<h1>Available Courses</h1>";
+                    this.course.map((coursename,index)=>{
+                        data+="<p>"+coursename+"</p>";
+                    })
+                    document.getElementById("container").innerHTML=data;
+                }
+
+                Staff=()=>{
+                    let data="<h1>Available Staff</h1>";
+                    this.staff.map((name,index)=>{
+                        data+="<p>"+name+"</p>";
+                    })
+                    document.getElementById("container").innerHTML=data;
+                }
+            }
+
+            const obj4=new MyCollege();
+            
+
+        </script>
+    </head>
+    <body>
+        <h1>Class objects Practice</h1>
+        <button onclick="obj4.Student()">Students List</button>
+        <button onclick="obj4.Course()">Course List</button>
+        <button onclick="obj4.Staff()">Staff List</button>
+
+        <div id="container"></div>
+
+    </body>
+</html>

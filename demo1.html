@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sorting Method</title>
+        <!--Bubble Sorting-->
+    </head>
+    <body>
+        <script language="javascript" type="text/javascript">
+            let arr=[10,50,80,70,60,30,95,1];
+            let i,j,temp;
+            document.write("<br/>Before Sorting...<br/>");
+            for(i=0;i<8;i++){
+                document.write(arr[i]+"<br/>");
+            }
+            for(i=0;i<8;i++){
+                for(j=0;j<7;j++){
+                    if(arr[j]>arr[j+1]){//80>70
+                        temp=arr[j];
+                        arr[j]=arr[j+1];
+                        arr[j+1]=temp; //[70,80] interchange
+                    }
+                }
+                
+            }
+            document.write("<br/>After Sorting....<br/>");
+            for(i=0;i<8;i++){
+                document.write(arr[i]+"<br/>");
+            }
+        </script>
+    </body>
+</html>
+

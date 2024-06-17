@@ -1,0 +1,61 @@
+<!--You can add delete the details-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                text-align: center;
+            }
+          .card{
+            box-shadow: 0px 4px 8px rebeccapurple;
+            width: 40%;
+            height: auto;
+            margin: 10% 20% 15%;
+            padding: 2%;
+          }
+          p{
+            font-size: 20px;
+            color: green;
+          }
+          button{
+            background-color: skyblue;
+            
+            border-radius: 5px;
+          }
+        </style>
+        <script>
+            let wordbook=['Apple','Banana','Mango','Sapota','Pineapple'];
+            const wordbox=()=>{
+               // let wordbook=['Apple','Banana','Mango','Sapota','Pineapple'];
+                let data="";
+                wordbook.forEach((name,index)=>{
+                    data=data+"<p>"+name+"-"+name.length+"<br><button onclick=del("+index+")>Delete</button></p>";
+                });
+                document.getElementById("container").innerHTML=data;
+            }
+
+            const save=()=>{
+                let newword=document.getElementById("newword").value;
+                wordbook.push(newword);
+                wordbox();
+                document.getElementById("newword").value="";
+            }
+
+            
+            const del=(index)=>{
+                wordbook.splice(index,1);
+                wordbox();
+            }
+
+        </script>
+    </head>
+    <body onload="wordbox()">
+        <div class="card">
+            <input type="text" id="newword"/>
+            <button onclick="save()">Save</button>
+            <section id="container"></section>
+        </div>
+       
+    </body>
+</html>
+

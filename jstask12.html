@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            p{
+                display: inline-block;
+                font-size: 20px;
+                font: bold;
+                margin: 2%;
+                padding: 5px;
+                width: 20%;
+            }
+            button{
+                background-color: green;
+                color: white;
+                border-radius: 5px;
+            }
+
+        </style>
+        <script>
+            let course=['Mern stack','Java full stack','Web development','Java','Python','C#','C++','React JS','Java script'];
+
+            const coursemenu=(keyword="")=>{
+                let data="";
+                course.filter((coursename,index)=>{
+                   if(coursename.toLowerCase().match(keyword.toLowerCase()))
+                   {
+                    data=data+"<p>"+coursename+"</p>";
+                   }
+                })
+                document.getElementById("container").innerHTML=data;
+            }
+
+            const save=()=>{
+                let newcourse=document.getElementById("newcourse").value;
+                course.push(newcourse);
+                coursemenu();
+                document.getElementById("newcourse").value="";
+            }
+
+            const del1=()=>{
+                course.shift();
+                coursemenu();
+            }
+            const del2=()=>{
+                course.pop();
+                coursemenu();
+            }
+
+        </script>
+    </head>
+    <body onload="coursemenu()" align="center">
+        <h1>Practicing Dynamic JS</h1>
+        Enter Course Name : <input type="text" id="newcourse"/>
+        <button onclick="save()">Save</button>
+    </br></br>
+    Search :<input type="text" onkeyup="coursemenu(this.value)"/>
+    <button onclick="del1()">Delete from first</button>
+    <button onclick="del2()">Delete from last</button>
+        <section id="container"></section>
+    </body>
+</html>

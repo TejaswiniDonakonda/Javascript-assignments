@@ -1,0 +1,77 @@
+<!--You can add delete the details-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            header{
+                text-align: center;
+                margin: 20px;
+            }
+            h3{
+                color: darkcyan;
+                font-size: 35px;
+                text-align: center;
+            }
+            p{
+                text-align: center;
+                display: inline-block;
+                font-size: 25px;
+                margin: 2%;
+                width: 20%;
+                color: red;
+                
+            }
+            button{
+                background-color: green;
+                color: white;
+            }
+            div{
+                text-align: center;
+            }
+            button{
+                background-color: green;
+                border-radius: 5px;
+                color: white;
+            }
+
+        </style>
+        <script>
+            let shop=['men wear','women wear','kids wear','dupattas','jeans'];
+
+            const shopping=(keyword="")=>{
+                let data="<h3> Available dresses </h3>";
+                shop.filter((dressname,index)=>{
+                    if(dressname.toLowerCase().match(keyword.toLowerCase()))
+                    {
+                        data=data+"<p>"+dressname+"</p>";
+                    }
+                    
+                });
+                document.getElementById("mall").innerHTML=data;
+            }
+
+            const save=()=>{
+                let newdress=document.getElementById("newdress").value;
+                shop.push(newdress);
+                shopping();
+                document.getElementById("newdress").value="";
+            }
+
+            
+
+        </script>
+    </head>
+    <body onload="shopping()">
+       <header>
+        <h1>Example 2 On Dynamic JS</h1>
+        Enter Dress type : <input type="text" id="newdress"/>
+        <button onclick="save()">Save </button>
+       </header>
+    </br></br>
+    <div>
+        Search here :<input type="text" onkeyup="shopping(this.value)"/>
+    </div>
+
+        <section id="mall"></section>
+    </body>
+</html>

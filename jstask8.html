@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            const fun=()=>{
+                let a= document.getElementById("myname").value;
+                document.getElementById("fname").innerText=a;
+                document.getElementById("lname").innerHTML=a;
+                document.getElementById("fname").innerText=a.length;
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>Task Regarding data binding.</h1>
+        <p>Name:<input type="text" id="myname"/></p>
+        <button onclick="fun()">save</button>
+        <p id="fname"></p>
+        <p id="lname"></p>
+
+    </body>
+</html>

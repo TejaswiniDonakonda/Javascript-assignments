@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table{
+                 border-collapse:collapse;
+                margin: 5px;
+                padding: 10px;
+            }
+            th,td{
+                border: 2px solid black;
+            }
+            .right{
+                margin-right: 25%;
+                padding: 20px;
+                margin-top: 0px;
+            }
+
+        </style>
+        
+    </head>
+    <body onload="getuser()">
+        <section >
+            <div class="left">
+                <h3 class="text-center text-warning"><i class="fa fa-user-plus mb-3 me-2"></i>Register Now</h3>
+    
+                <table celpadding="20" celspacing="25" padding="30px" class="left">
+                  <tr>
+                    <th>First Name:</th>
+                    <td><input type="text" class="form-control" id="newfname"/></td>
+                  </tr>
+                  <tr>
+                    <th>Last Name:</th>
+                    <td><input type="text" class="form-control" id="newlname"/></td>
+                  </tr>
+                   <tr>
+                    <th>Course Name:</th>
+                    <td><input type="text" class="form-control" id="newcourse"/></td>
+                   </tr> 
+                    <tr>
+                      <th>Mobile No:</th>
+                      <td><input type="number" class="form-control" id="newmob"/></td>
+                    </tr>
+                    
+                    <tr>
+                      <td colspan="3" align="center">
+                        <button class="bg-success text-white" onclick="save()" id="newuser">Add User</button>
+                        <button class=" bg-danger text-white" onclick="del()">Delete</button>
+                      </td>  
+                    </tr>
+                </table>
+    
+              </div> 
+              
+              <div id="right">
+                <table align="right" cellspacing="10" cellpadding="15">
+                  <thead>
+                      <tr>
+                          <th>Sno</th>
+                          <th>Fname</th>
+                          <th>Lname</th>
+                          <th>Course</th>
+                          <th>Mob no</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody id="container"></tbody>
+              </table>
+            </div>
+        </section>
+
+
+    <script>
+        let userdetails=[
+          {fname:'Teju',lname:'Gangulappa',course:'MERN',mob:162562442552}
+        ];
+      const getuser=()=>{
+
+        let data="";
+        userdetails.map((user,index)=>{
+          data+="<tr>";
+            data+="<td>"+(index+1)+"</td>";
+            data+="<td>"+user.fname+"</td>";
+            data+="<td>"+user.lname+"</td>";
+            data+="<td>"+user.course+"</td>";
+            data+="<td>"+user.mob+"</td>";
+            data+="<td><button onclick='del("+index+")'>Delete</button></td>";
+          data+="</tr>";
+        })
+        document.getElementById("container").innerHTML=data;
+      }
+
+      const save=()=>{
+        let newfname=document.getElementById("newfname").value;
+        let newlname=document.getElementById("newlname").value;
+        let newcourse=document.getElementById("newcourse").value;
+        let newmob=document.getElementById("newmob").value;
+
+        if(newfname !="" && newlname !="" && newcourse !="" && newmob !=""){
+
+          let newuser={fname:newfname,lname:newlname,course:newcourse,mob:newmob};
+          if(userindex == -1){
+            userdetails=userdetails.concat(newuser);
+          }
+          else{
+            userdetails[userindex]=newuser;
+            userindex = -1;
+          }
+
+          getuser();
+
+          //to clear input field
+          newfname="";
+          newlname="";
+          newcourse="";
+          newmob="";
+
+        }
+        else{
+          alert("check invalid input");
+        }
+      }
+      let userindex = -1;
+
+      const del=(index)=>{
+        let inputstatus=confirm("Are you sure?");
+        if(inputstatus==true){
+          userdetails.splice(index,1);
+          getuser()
+        }
+
+      }
+
+    </script>
+
+
+          
+</body>
+</html>

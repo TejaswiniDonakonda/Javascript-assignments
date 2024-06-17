@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+        </style>
+        <script>
+            let course=['MBA','BSC','BBA','BCA','BCom'];
+
+            const courseshelf=(keyword="")=>{
+                let data="<h3> Available Courses</h3>";
+                course.filter((coursename,index)=>{
+                    if(coursename.toLowerCase().match(keyword.toLowerCase()))
+                    {
+                        data=data+"<p>"+coursename+"</p>";
+                    }
+                    
+                });
+                document.getElementById("container").innerHTML=data;
+            }
+
+            const save=()=>{
+                let newcourse=document.getElementById("newcourse").value;
+                course.push(newcourse);
+                courseshelf();
+                document.getElementById("newcourse").value="";
+            }
+        </script>
+
+    </head>
+    <body onload="courseshelf()">
+       <header>
+        <h1>Practicing Dynamic Js</h1>
+        Enter Course Name:<input type="text" id="newcourse"/>
+        <button onclick="save()">Save</button>
+       </header>
+    </br></br>
+        search:<input type="text" onkeyup="courseshelf(this.value)"/>
+        <section id="container"></section>
+    </body>
+</html>

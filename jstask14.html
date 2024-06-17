@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="dist/css/bootstrap.css"/>
+        <style>
+            th{
+                color: red;
+                margin: 1%;
+                padding: 15px;
+            }
+            .card{
+                box-shadow: 0px 4px 8px blueviolet;
+                width: 30%;
+                height: 30%;
+                margin: 5%;
+                padding: 10px;
+            }
+            tr{
+                text-align: right;
+                margin: 0% 20% 10%;
+                
+            }
+            table{
+                border-collapse: collapse;
+            }
+            th,td{
+                border:0.5px solid black;
+                padding: 7px 15px 7px;
+            }
+            button{
+                border-radius: 5px;
+                background-color: green;
+                color: white;
+            }
+
+        </style>
+        <script>
+            let transportlist=[
+                {tnum:123,type:'Small',rootname:'BST',driver:'Ananth',mobno:8874467463}
+            ];
+
+            const getdetail=()=>{
+                let data="";
+                transportlist.filter((detail,index)=>{
+                    data=data+"<tr>";
+                        data=data+"<td>"+(index+1)+"</td>";
+                        data=data+"<td>"+detail.tnum+"</td>";
+                        data=data+"<td>"+detail.type+"</td>";
+                        data=data+"<td>"+detail.rootname+"</td>";
+                        data=data+"<td>"+detail.driver+"</td>";
+                        data=data+"<td>"+detail.mobno+"</td>";
+                        data=data+"<td><button onclick=del("+index+")>Delete</button></td>";
+
+                    data=data+"</tr>";
+                })
+                document.getElementById("container").innerHTML=data;
+            }
+            
+            const save=()=>{
+                let newtnum=document.getElementById("newtnum");
+                let newtype=document.getElementById("newtype");
+                let newrootname=document.getElementById("newrootname");
+                let newdriver=document.getElementById("newdriver");
+                let newmobno=document.getElementById("newmobno");
+                
+                if(newtnum !="" && newtype !="" && newrootname !="" && newdriver !="" && newmobno !=""){
+
+                    let newuser={tnum:newtnum.value, type:newtype.value,  rootname:newrootname.value, driver:newdriver.value, mobno:newmobno.value};
+                    
+                    if(transportindex == -1){
+                        transportlist=transportlist.concat(newuser);     
+                    }
+                    else{
+                        transportlist[transportindex]=newuser;
+                        transportindex = -1;
+                    }
+                    getdetail();
+                     
+                    //to clear input field
+                    newtnum.value="";
+                    newtype.value="";
+                    newrootname.value="";
+                    newdriver.value="";
+                    newmobno.value="";
+                }
+                else{
+                    alert("Check input field");
+                }
+
+            }
+            
+            let transportindex = -1;
+
+            const del=(index)=>{
+                let inputstatus= confirm("Are you sure?");
+                if(inputstatus==true){
+                    transportlist.splice(index,1);
+                    getdetail();
+                }
+            }
+
+        </script>
+    </head>
+    <body onload="getdetail()">
+
+        <table align="right">
+            <thead>
+                <tr>
+                    <th>T-Id</th>
+                    <th>T-Number</th>
+                    <th>Type</th>
+                    <th>Transport root Name</th>
+                    <th>Driver</th>
+                    <th>Mobile No</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="container">
+
+            </tbody>
+        </table>
+
+        <table align="left">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">New Transport</div>
+                <div class="card-body">
+                    <div class="row">  
+                        <div class="mb-3">
+                            <label>Transport Number</label>
+                            <input type="number" class="form-control" id="newtnum"/>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Root Name</label>
+                            <input type="text" class="form-control" id="newrootname"/>
+                        </div>
+                        <div class="mb-3">
+                            <label>Size</label>
+                            <input type="text" class="form-control" id="newtype"/>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Drive Name</label>
+                            <input type="text" class="form-control" id="newdriver"/>
+                        </div>
+                        <div class="mb-3">
+                            <label>Drive Mobile No</label>
+                            <input type="number" class="form-control" id="newmobno"/>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-primary" onclick="save()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </table>
+
+    </body>
+</html>
